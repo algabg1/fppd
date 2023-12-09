@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  jobmanager:
+    image: flink:latest
+    expose:
+      - "6123"
+    ports:
+      - "8081:8081"
+    command: jobmanager
+
+  taskmanager:
+    image: flink:latest
+    expose:
+      - "6121"
+    depends_on:
+      - jobmanager
+    command: taskmanager
+
+  zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - "2181:2181"
+
+networks:
+  default:
+    external:
+      name: flink-network
