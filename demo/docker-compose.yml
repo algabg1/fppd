@@ -1,13 +1,13 @@
-version: '3.8'
+version: '3.4'
 
 services:
   jobmanager:
-    image: flink:latest
-    expose:
-      - "6123"
-    ports:
-      - "8081:8081"
-    command: jobmanager
+      image: flink:latest
+      expose:
+        - "6123"
+      ports:
+        - "8081:8081"
+      command: jobmanager
 
   taskmanager:
     image: flink:latest
@@ -23,6 +23,6 @@ services:
       - "2181:2181"
 
 networks:
-  default:
-    external:
-      name: flink-network
+  minha-rede-docker:
+    external: true
+
